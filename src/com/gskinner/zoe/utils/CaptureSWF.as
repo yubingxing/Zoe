@@ -685,8 +685,9 @@ package com.gskinner.zoe.utils {
 			var regPoint:Point=fileModel.selectedItem.registrationPt;
 			
 			l = bitmaps.length;
-			
+			var jsonData:Object = {}
 			if (isComplex) {
+				jsonData.isComplex = 1;
 				//Build the frames array.
 				for (i=0;i<l;i++) {
 					var tempData:Object = bitmaps[i];
@@ -723,6 +724,9 @@ package com.gskinner.zoe.utils {
 				for (i=0;i<statesCount;i++) {
 					var state:AnimationState = states[i];
 					animations[state.name] = {frames:getFramesForRange(state.startFrame, state.endFrame)};
+//					animations[state.name] = {frames:getFramesForRange(state.startFrame, state.endFrame)};
+					// Modify by IceStar, shorten the frames queue
+					animations[state.name] = [state.startFrame, state.endFrame];
 				}
 			} else {
 				var frameBounds:Rectangle = fileModel.selectedItem.frameBounds;
@@ -740,7 +744,6 @@ package com.gskinner.zoe.utils {
 			}
 			
 			
-			var jsonData:Object = {}
 			jsonData.frames = frames;
 			jsonData.animations = animations;
 			jsonData.images = exportedImageNames;
