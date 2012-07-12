@@ -18,6 +18,7 @@ local.properties
 .settings/
 .loadpath
 bin-debug/
+deploy/
 
 # External tool builders
 .externalToolBuilders/
